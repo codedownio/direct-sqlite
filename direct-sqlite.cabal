@@ -48,6 +48,10 @@ flag json1
   default:     True
   description: Enable json1 extension.
 
+flag dbstat
+  default:     True
+  description: Enable dbstat table.
+
 library
   exposed-modules:  Database.SQLite3
                     Database.SQLite3.Bindings
@@ -84,6 +88,9 @@ library
 
     if flag(json1)
       cc-options: -DSQLITE_ENABLE_JSON1
+
+    if flag(dbstat)
+      cc-options: -DSQLITE_ENABLE_DBSTAT_VTAB
 
 test-suite test
   type:               exitcode-stdio-1.0
